@@ -40,6 +40,7 @@
                         <th>No.</th>
                         <th>Name </th>
                         <th>Designation</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
             </table>

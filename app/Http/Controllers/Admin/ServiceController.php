@@ -24,7 +24,7 @@ class ServiceController extends Controller
         return DataTables::of($service)
             ->addIndexColumn()
             ->addColumn('action', function($row) {
-                $editBtn = '<a href="' . route('service-edit', $row->id) . '" class="btn btn-sm btn-primary">Edit</a>';
+                $editBtn = '<a href="' . route('service-edit', $row->id) . '" class="btn btn-sm btn-primary"><i class="bi bi-pen"></i></a>';
                 // $deleteBtn = '<a onclick="return confirm(\'Are you sure you want to delete this record?\')" href="' . route('service-delete', $row->id) . '" class="btn btn-sm btn-danger">Delete</a>';
                 $deleteBtn = \App\Models\User::getdeletebutton($row->id,'service-delete');
                 return $editBtn . ' ' . $deleteBtn;

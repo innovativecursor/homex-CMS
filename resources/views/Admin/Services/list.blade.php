@@ -39,6 +39,7 @@
                     <tr>
                         <th>No.</th>
                         <th>Description</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
             </table>
@@ -55,26 +56,30 @@
             processing: true,
             serverSide: true,
             ajax: '{{ route('admin-service-datable') }}',
-            columns: [{
-                    data: 'DT_RowIndex'
-                    , name: 'DT_RowIndex'
-                    , orderable: false
-                    , searchable: false
-                }
-                , {
-                    data: 'description'
-                    , name: 'description'
-                }
-                ,
+            columns: [
                 {
-                    data: 'action'
-                    , name: 'action'
-                    , orderable: false
-                    , searchable: false
+                    data: 'DT_RowIndex',
+                    name: 'DT_RowIndex',
+                    orderable: false,
+                    searchable: false
+                },
+                {
+                    data: 'description',
+                    name: 'description',
+                    render: function(data, type, row) {
+                        // Show only the first 50 characters of description
+                        return data.length > 120 ? data.substr(0, 120) + '...' : data;
+                    }
+                },
+                {
+                    data: 'action',
+                    name: 'action',
+                    orderable: false,
+                    searchable: false
                 }
             ]
         });
     });
-
 </script>
+
 @endsection

@@ -24,7 +24,7 @@ class TeamController extends Controller
         return DataTables::of($team)
             ->addIndexColumn()
             ->addColumn('action', function($row) {
-                $editBtn = '<a href="' . route('team-edit', $row->id) . '" class="btn btn-sm btn-primary">Edit</a>';
+                $editBtn = '<a href="' . route('team-edit', $row->id) . '" class="btn btn-sm btn-primary"><i class="bi bi-pen"></i></a>';
                 $deleteBtn = \App\Models\User::getdeletebutton($row->id,'team-delete');
                 // Escape the single quotes in the confirm message or use double quotes for the outer attribute
                 // $deleteBtn = '<a onclick="return confirm(\'Are you sure you want to delete this record?\')" href="' . route('team-delete', $row->id) . '" class="btn btn-sm btn-danger">Delete</a>';

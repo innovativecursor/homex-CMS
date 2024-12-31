@@ -39,11 +39,11 @@
                     <tr>
                         <th>No.</th>
                         <th>Title</th>
-                        <th>Description</th>
                         <th>Loction</th>
                         <th>Key Features</th>
                         <th>Exuction Time</th>
                         <th>Turn Over </th>
+                        <th>Action</th>
                     </tr>
                 </thead>
             </table>
@@ -69,10 +69,6 @@
                 , {
                     data: 'title'
                     , name: 'title'
-                }
-                , {
-                    data: 'description'
-                    , name: 'description'
                 }
                 ,
                 {

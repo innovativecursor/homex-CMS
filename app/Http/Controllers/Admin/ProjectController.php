@@ -21,12 +21,12 @@ class ProjectController extends Controller
 
     public function datable(Request $request)
     {
-        $project = Project::select('id', 'title', 'description','loction','features','exuctiontime','turnover');
+        $project = Project::select('id', 'title','loction','features','exuctiontime','turnover');
 
         return DataTables::of($project)
             ->addIndexColumn()
             ->addColumn('action', function($row) {
-                $editBtn = '<a href="' . route('project-edit', $row->id) . '" class="btn btn-sm btn-primary">Edit</a>';
+                $editBtn = '<a href="' . route('project-edit', $row->id) . '" class="btn btn-sm btn-primary"><i class="bi bi-pen"></i></a>';
 
                 $deleteBtn = \App\Models\User::getdeletebutton($row->id,'project-delete');
 

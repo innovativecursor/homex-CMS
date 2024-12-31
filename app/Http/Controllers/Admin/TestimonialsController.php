@@ -20,12 +20,12 @@ class TestimonialsController extends Controller
 
     public function datable(Request $request)
     {
-        $testimonials = Testimonials::select('id', 'testimonials_name', 'testimonials_location','testimonials_review','testimonials_description');
+        $testimonials = Testimonials::select('id', 'testimonials_name', 'testimonials_location','testimonials_review');
 
         return DataTables::of($testimonials)
             ->addIndexColumn()
             ->addColumn('action', function($row) {
-                $editBtn = '<a href="' . route('testimonials-edit', $row->id) . '" class="btn btn-sm btn-primary">Edit</a>';
+                $editBtn = '<a href="' . route('testimonials-edit', $row->id) . '" class="btn btn-sm btn-primary"><i class="bi bi-pen"></i></a>';
                 // $deleteBtn = '<a onclick="return confirm(\'Are you sure you want to delete this record?\')" href="' . route('testimonials-delete', $row->id) . '" class="btn btn-sm btn-danger">Delete</a>';
                 $deleteBtn = \App\Models\User::getdeletebutton($row->id,'testimonials-delete');
                 return $editBtn . ' ' . $deleteBtn;

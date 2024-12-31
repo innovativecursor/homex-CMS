@@ -24,7 +24,7 @@ class ApiController extends Controller
         return response()->json(['success'=>true,'message'=>'Achivement Data Get Successfully.','data'=>$about]);
     }
     public function gettestimonials(){
-        $data=Testimonials::where('id',2)->first();
+        $data=Testimonials::all();
         return response()->json(['success'=>true,'message'=>'Testimonials Data Get Successfully.','data'=>$data]);
     }
     public function getproject(){

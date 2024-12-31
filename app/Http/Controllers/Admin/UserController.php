@@ -11,6 +11,14 @@ use App\Mail\LoginNotification;
 
 class UserController extends Controller
 {
+    public function __construct()
+    {
+        // Ensure the user is authenticated and has role 1
+        if (\Auth::check() && \Auth::user()->role != 1) {
+            // If role is not 1, redirect to home or show an error message
+            return redirect()->route('project-list')->with('error', 'You do not have permission to access this page.');
+        }
+    }
     public function index()
     {
         $users = User::select('name', 'email')->get();
@@ -24,8 +32,8 @@ class UserController extends Controller
         return DataTables::of($users)
             ->addIndexColumn()
             ->addColumn('action', function($row) {
-                $editBtn = '<a href="' . route('user-edit', $row->id) . '" class="btn btn-sm btn-primary">Edit</a>';
-                $deleteBtn = '<a onclick="return confirm(\'Are you sure you want to delete this record?\')" href="' . route('user-delete', $row->id) . '" class="btn btn-sm btn-danger">Delete</a>';
+                $editBtn = '<a href="' . route('user-edit', $row->id) . '" class="btn btn-sm btn-primary"><i class="bi bi-pen"></i></a>';
+                $deleteBtn = '<a onclick="return confirm(\'Are you sure you want to delete this record?\')" href="' . route('user-delete', $row->id) . '" class="btn btn-sm btn-danger"><i class="bi bi-trash"></i></a>';
 
                 return $editBtn . ' ' . $deleteBtn;
             })
@@ -86,31 +94,5 @@ class UserController extends Controller
         $user = User::where('id', $id)->delete();
         return redirect()->route('user-list')->with('success', 'User Successfully Deleted..');
     }
-    public function showChangePasswordForm()
-    {
-        return view('Admin.change-password'); // Blade view for the form
-    }
 
-    // Handle the password change logic
-    public function changePassword(Request $request)
-    {
-        // Validate the form inputs
-        $validated = $request->validate([
-            'current_password' => 'required',
-            'new_password' => 'required|min:8|confirmed', // New password and confirmation
-        ]);
-
-        // Check if the current password matches the authenticated user
-        if (!\Hash::check($request->current_password, \Auth::user()->password)) {
-            return back()->withErrors(['current_password' => 'Current password is incorrect.']);
-        }
-
-        // Update the user's password
-        $user = \Auth::user();
-        $user->password = $request->new_password;
-        $user->save();
-
-        // Redirect or show success message
-        return redirect()->route('change-password.form')->with('success', 'Password successfully updated.');
-    }
 }

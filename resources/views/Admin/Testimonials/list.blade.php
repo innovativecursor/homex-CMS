@@ -41,7 +41,9 @@
                         <th>Testimonials Name </th>
                         <th>Testimonials Location</th>
                         <th>Testimonials Rating</th>
-                        <th>Testimonials Review </th>
+
+                        <th>Action</th>
+
                     </tr>
                 </thead>
             </table>
@@ -76,11 +78,6 @@
                 {
                     data: 'testimonials_review'
                     , name: 'testimonials_review'
-                }
-                ,
-                {
-                    data: 'testimonials_description'
-                    , name: 'testimonials_description'
                 }
                 , {
                     data: 'action'

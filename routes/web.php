@@ -10,7 +10,9 @@ use App\Http\Controllers\Admin\ProjectController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\ForgotPasswordController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Middleware\RoleMiddleware;
 
 
 
@@ -27,13 +29,14 @@ Route::post('login-user', [AuthController::class, 'loginuser'])->name('loginuser
 
 Route::group(['prefix' => 'admin'], function () {
     Route::get('dashboard', [DashboardController::class, 'index'])->name('admin-dashbord');
-    Route::get('user-list', [UserController::class, 'index'])->name('user-list');
-    Route::get('admin-user-datable', [UserController::class, 'datable'])->name('admin-user-datable');
-    Route::get('user-add', [UserController::class, 'create'])->name('user-add');
-    Route::post('user-store', [UserController::class, 'store'])->name('user-store');
-    Route::get('user-edit/{id}', [UserController::class, 'edit'])->name('user-edit');
-    Route::post('user-update/{id}', [UserController::class, 'update'])->name('user-update');
-    Route::get('user-delete/{id}', [UserController::class, 'delete'])->name('user-delete');
+
+    Route::get('user-list', [UserController::class, 'index'])->name('user-list')->middleware(RoleMiddleware::class);
+    Route::get('admin-user-datable', [UserController::class, 'datable'])->name('admin-user-datable')->middleware(RoleMiddleware::class);
+    Route::get('user-add', [UserController::class, 'create'])->name('user-add')->middleware(RoleMiddleware::class);
+    Route::post('user-store', [UserController::class, 'store'])->name('user-store')->middleware(RoleMiddleware::class);
+    Route::get('user-edit/{id}', [UserController::class, 'edit'])->name('user-edit')->middleware(RoleMiddleware::class);
+    Route::post('user-update/{id}', [UserController::class, 'update'])->name('user-update')->middleware(RoleMiddleware::class);
+    Route::get('user-delete/{id}', [UserController::class, 'delete'])->name('user-delete')->middleware(RoleMiddleware::class);
 
     Route::get('testimonials-add', [TestimonialsController::class, 'create'])->name('testimonials-add');
     Route::post('testimonials-store', [TestimonialsController::class, 'store'])->name('testimonials-store');
@@ -79,11 +82,13 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('achievements', [AchievementsController::class, 'index'])->name('admin-achievements');
     Route::post('achievements-store', [AchievementsController::class, 'store'])->name('achievements-store');
 
-    Route::get('change-password', [UserController::class, 'showChangePasswordForm'])->name('change-password.form');
+    Route::get('change-password', [AuthController::class, 'showChangePasswordForm'])->name('change-password.form');
     Route::get('contact-delete/{id}', [ContactController::class, 'delete'])->name('contact-delete');
 
 
 // Handle password change request
-Route::post('change-password', [UserController::class, 'changePassword'])->name('change-password.update');
-});
+Route::post('change-password', [AuthController::class, 'changePassword'])->name('change-password.update');
 
+});
+Route::get('forgot-password', [ForgotPasswordController::class, 'showForgotPasswordForm'])->name('forgot-password.form');
+Route::post('forgot-password', [ForgotPasswordController::class, 'sendNewPassword'])->name('forgot-password.send');

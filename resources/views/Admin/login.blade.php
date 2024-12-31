@@ -6,7 +6,8 @@
   <title>Login Form</title>
   <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-
+  <link href="{{asset('admin/vendor/bootstrap-icons/bootstrap-icons.css')}}" rel="stylesheet">
+  <link href="{{asset('admin/vendor/boxicons/css/boxicons.min.css')}}" rel="stylesheet">
   <!-- Optional: Custom CSS for additional styling -->
   <style>
     body {
@@ -44,11 +45,16 @@
       box-shadow: none;
       border-color: #007bff;
     }
+    body{
+        background-image: url('{{ asset("bgimage.jpg")}}');
+        background-size: cover;
+
+    }
   </style>
 </head>
 <body>
   <div class="login-container">
-    
+
     <h3>Login</h3>
     <form action="{{route('loginuser')}}" method="post">
         @csrf
@@ -68,6 +74,9 @@
       </div>
       <button type="submit" class="btn btn-primary">Login</button>
     </form>
+    <div class="mt-3 text-center">
+        <a href="{{ route('forgot-password.form') }}" class="text-decoration-none">Forgot your password?</a>
+      </div>
   </div>
 
   <!-- Bootstrap JS and Icons -->

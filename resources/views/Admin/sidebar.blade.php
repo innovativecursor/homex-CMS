@@ -5,14 +5,14 @@
 
 
       <li class="nav-heading">Pages</li>
-
+    @if(auth()->user()->role ==1)
       <li class="nav-item">
         <a class="nav-link collapsed" href="{{route('user-list')}}">
           <i class="bi bi-person"></i>
           <span>User</span>
         </a>
       </li><!-- End Profile Page Nav -->
-
+    @endif
       <li class="nav-item">
         <a class="nav-link collapsed" href="{{route('testimonials-list')}}">
           <i class="bi bi-question-circle"></i>
@@ -29,7 +29,7 @@
 
       <li class="nav-item">
         <a class="nav-link collapsed {{ Request::routeIs('contact-list') ? 'active' : '' }}" href="{{route('contact-list')}}">
-          <i class="bi bi-card-list"></i>
+            <i class="bi bi-person-rolodex"></i>
           <span>Contact</span>
         </a>
       </li><!-- End Register Page Nav -->
@@ -50,7 +50,7 @@
 
       <li class="nav-item">
         <a class="nav-link collapsed" href="{{route('team-list')}}">
-          <i class="bi bi-envelope"></i>
+            <i class="bi bi-people-fill"></i>
           <span>Team</span>
         </a>
       </li>
@@ -58,21 +58,21 @@
 
       <li class="nav-item">
         <a class="nav-link collapsed" href="{{route('admin-achievements')}}">
-          <i class="bi bi-card-list"></i>
+            <i class="bi bi-bullseye"></i>
           <span>Achievements</span>
         </a>
       </li>
 
       <li class="nav-item">
         <a class="nav-link collapsed" href="{{route('change-password.form')}}">
-          <i class="bi bi-question-circle"></i>
+            <i class="bi bi-shield-lock-fill"></i>
           <span>Change Password</span>
         </a>
       </li>
 
       <li class="nav-item">
         <a class="nav-link collapsed" href="{{route('logout')}}">
-          <i class="bi bi-card-list"></i>
+            <i class="bi bi-box-arrow-right"></i>
           <span>Logout</span>
         </a>
       </li>

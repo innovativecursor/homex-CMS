@@ -48,7 +48,7 @@ class User extends Authenticatable
     public static function getdeletebutton($id,$route){
 
         if(isset(auth()->user()->role) && auth()->user()->role==1){
-            $data='<a onclick="return confirm(\'Are you sure you want to delete this record?\')" href="' . route($route, $id) . '" class="btn btn-sm btn-danger">Delete</a>';
+            $data='<a onclick="return confirm(\'Are you sure you want to delete this record?\')" href="' . route($route, $id) . '" class="btn btn-sm btn-danger"><i class="bi bi-trash"></i></a>';
         }else{
             $data='';
         }
