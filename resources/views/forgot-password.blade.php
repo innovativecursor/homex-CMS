@@ -50,6 +50,9 @@
 </head>
 <body>
   <div class="forgot-password-container">
+    @if(session('status'))
+    <div class="alert alert-success mt-3">{{ session('status') }} <a href="https://mail.google.com/mail/u/0/#inbox" target="_blank">Open Gmail</a></div>
+    @endif
     <h3>Forgot Password</h3>
     <form action="{{ route('forgot-password.send') }}" method="POST">
       @csrf
@@ -57,6 +60,14 @@
       <div class="mb-3">
         <label for="email" class="form-label">Enter your Email</label>
         <input type="email" name="email" class="form-control" id="email" value="{{ old('email') }}" required>
+
+    @if ($errors->any())
+      <div class="alert alert-danger mt-3">
+        @foreach ($errors->all() as $error)
+          <p>{{ $error }}</p>
+        @endforeach
+      </div>
+    @endif
       </div>
 
       <!-- Submit Button -->
@@ -66,18 +77,10 @@
         <a href="{{ route('login') }}" class="text-decoration-none">Login</a>
       </div>
     <!-- Display Status Message -->
-    @if(session('status'))
-      <div class="alert alert-success mt-3">{{ session('status') }}</div>
-    @endif
+
 
     <!-- Validation Errors -->
-    @if ($errors->any())
-      <div class="alert alert-danger mt-3">
-        @foreach ($errors->all() as $error)
-          <p>{{ $error }}</p>
-        @endforeach
-      </div>
-    @endif
+
   </div>
 
   <!-- Bootstrap JS and Icons -->

@@ -4,7 +4,7 @@
     <ul class="sidebar-nav" id="sidebar-nav">
 
 
-      <li class="nav-heading">Pages</li>
+      {{-- <li class="nav-heading">Pages</li> --}}
     @if(auth()->user()->role ==1)
       <li class="nav-item">
         <a class="nav-link collapsed" href="{{route('user-list')}}">
@@ -35,21 +35,21 @@
       </li><!-- End Register Page Nav -->
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="{{route('admin-about')}}">
+        <a class="nav-link collapsed {{ Request::routeIs('admin-about') ? 'active' : '' }}" href="{{route('admin-about')}}">
           <i class="bi bi-card-list"></i>
           <span>About</span>
         </a>
       </li>
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="{{route('service-list')}}">
+        <a class="nav-link collapsed {{ Request::routeIs('service-list') ? 'active' : '' }}" href="{{route('service-list')}}">
           <i class="bi bi-question-circle"></i>
           <span>Service</span>
         </a>
       </li>
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="{{route('team-list')}}">
+        <a class="nav-link collapsed {{ Request::routeIs('team-list') ? 'active' : '' }}" href="{{route('team-list')}}">
             <i class="bi bi-people-fill"></i>
           <span>Team</span>
         </a>
@@ -57,14 +57,14 @@
 
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="{{route('admin-achievements')}}">
+        <a class="nav-link collapsed {{ Request::routeIs('admin-achievements') ? 'active' : '' }}" href="{{route('admin-achievements')}}">
             <i class="bi bi-bullseye"></i>
           <span>Achievements</span>
         </a>
       </li>
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="{{route('change-password.form')}}">
+        <a class="nav-link collapsed {{ Request::routeIs('change-password.form') ? 'active' : '' }}"  href="{{route('change-password.form')}}">
             <i class="bi bi-shield-lock-fill"></i>
           <span>Change Password</span>
         </a>

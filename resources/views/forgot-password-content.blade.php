@@ -9,6 +9,6 @@
   <p>Hello,</p>
   <p>Your new password is: <strong>{{ $newPassword }}</strong></p>
   <p>Please use this password to log in to your account.</p>
-  <p><a href="{{ url('/login') }}">Login Now</a></p>
+  <p><a href="{{ route('login') }}">Login Now</a></p>
 </body>
 </html>
