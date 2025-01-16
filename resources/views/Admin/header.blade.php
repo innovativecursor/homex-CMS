@@ -46,8 +46,8 @@
   <header id="header" class="header fixed-top d-flex align-items-center">
 
     <div class="d-flex align-items-center justify-content-between">
-      <a href="index.html" class="logo d-flex align-items-center">
-        <img src="{{asset('admin/homelogo.png')}}" alt="" style="max-height: 57PX;border-radius: 5px;">
+      <a href="{{route('project-list')}}" class="logo d-flex align-items-center">
+        <img src="{{asset('admin/homelogo.png')}}" alt="" style="max-height: 57PX;border-radius: 5px;" >
         {{-- <span class="d-none d-lg-block">Homex</span> --}}
       </a>
       <i class="bi bi-list toggle-sidebar-btn"></i>

@@ -5,7 +5,7 @@
 
 
       {{-- <li class="nav-heading">Pages</li> --}}
-    @if(auth()->user()->role ==1)
+    @if(isset(auth()->user()->role) && auth()->user()->role ==1)
       <li class="nav-item">
         <a class="nav-link collapsed" href="{{route('user-list')}}">
           <i class="bi bi-person"></i>
