@@ -14,7 +14,23 @@ class ServiceController extends Controller
     public function index()
     {
         $service = Service::all();
-        return view('Admin.Services.list', compact('service'));
+        $serviceDetail = \App\Models\ServiceDetail::find(1);
+        return view('Admin.Services.list', compact('service','serviceDetail'));
+    }
+    public function updatedetails(Request $request)
+    {
+        $serviceDetail = \App\Models\ServiceDetail::where('id',1)->first();
+
+        // Validate the incoming request
+        $request->validate([
+            'main_description' => 'required|string',
+        ]);
+
+        // Update the main_description
+        $serviceDetail->main_description = $request->input('main_description');
+        $serviceDetail->save();
+
+        return redirect()->route('service-list')->with('success', 'Description updated successfully');
     }
 
     public function datable(Request $request)

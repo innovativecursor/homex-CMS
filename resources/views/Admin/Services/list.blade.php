@@ -27,6 +27,15 @@
     @endif
 
     <section>
+        <form action="{{ route('service-updates') }}" method="POST">
+            @csrf
+            @method('PUT')
+            <div class="mb-3">
+                <label for="main_description" class="form-label">Main Description</label>
+                <textarea name="main_description" id="main_description" class="form-control" rows="3">{{ old('main_description', $serviceDetail->main_description) }}</textarea>
+            </div>
+            <button type="submit" class="btn btn-success mb-3">Save Description</button>
+        </form>
         <div class="d-flex justify-content-end mb-3">
             <a href="{{route('service-add')}}">
                 <button type="button" class="btn btn-primary">Add Service</button>
@@ -38,7 +47,7 @@
                 <thead>
                     <tr>
                         <th>No.</th>
-                        <th>Description</th>
+                        <th>Title</th>
                         <th>Action</th>
                     </tr>
                 </thead>

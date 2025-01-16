@@ -69,7 +69,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::get('admin-service-datable', [ServiceController::class, 'datable'])->name('admin-service-datable');
     Route::get('service-list', [ServiceController::class, 'index'])->name('service-list');
 
-
+    Route::put('servicedetails/update', [ServiceController::class, 'updatedetails'])->name('service-updates');
     Route::get('team-add', [TeamController::class, 'create'])->name('team-add');
     Route::post('team-store', [TeamController::class, 'store'])->name('team-store');
     Route::get('team-edit/{id}', [TeamController::class, 'edit'])->name('team-edit');

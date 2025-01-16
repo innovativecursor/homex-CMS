@@ -35,8 +35,8 @@
                 @enderror
             </div>
             <div class="mt-3">
-                <label for="description" class="mb-2">Description <span style="color: red">*</span></label>
-                <textarea name="description" id="description" cols="100" rows="6" class="form-control" placeholder="Enter Description">{{ old('description', $service->description) }}</textarea>
+                <label for="description" class="mb-2">Title <span style="color: red">*</span></label>
+                <input type="text" name="description" cols="100" rows="6" class="form-control" placeholder="Enter Title" value="{{ old('description', $service->description) }}">
                 @error('description')
                 <div class="error text-danger">{{ $message }}</div>
                 @enderror

@@ -32,8 +32,12 @@ class ApiController extends Controller
         return response()->json(['success'=>true,'message'=>'Project Data Get Successfully.','data'=>$project]);
     }
     public function getservice(){
+        $serviceDetail = \App\Models\ServiceDetail::find(1);
         $service=Service::all();
-        return response()->json(['success'=>true,'message'=>'Service Data Get Successfully.','data'=>$service]);
+        return response()->json(['success'=>true,'message'=>'Service Data Get Successfully.', 'data' => [
+            'serviceDetail' => $serviceDetail,
+            'services' => $service,
+        ],]);
     }
     public function getteam(){
         $team=Team::all();
