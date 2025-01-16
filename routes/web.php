@@ -27,7 +27,7 @@ Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 Route::get('/', [AuthController::class, 'login'])->name('login');
 Route::post('login-user', [AuthController::class, 'loginuser'])->name('loginuser');
 
-Route::group(['prefix' => 'admin'], function () {
+Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::get('dashboard', [DashboardController::class, 'index'])->name('admin-dashbord');
 
     Route::get('user-list', [UserController::class, 'index'])->name('user-list')->middleware(RoleMiddleware::class);
