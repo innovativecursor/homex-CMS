@@ -46,7 +46,7 @@
               console.log(file.size)
               var maxSize = 5 * 1024 * 1024; // 5 MB in bytes
               if (file.size > maxSize) {
-                  alert("File size should not exceed 5MB");
+                  alert("Image File size should not exceed 5MB");
                   $(this).val(''); // Clear the file input field
               }
           }
@@ -57,7 +57,7 @@
               console.log(file.size)
               var maxSize = 50 * 1024 * 1024; // 5 MB in bytes
               if (file.size > maxSize) {
-                  alert("File size should not exceed 50MB");
+                  alert("Video File size should not exceed 50MB");
                   $(this).val(''); // Clear the file input field
               }
           }
