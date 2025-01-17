@@ -23,7 +23,7 @@
 
 
                 <!-- Allow the user to upload a new image -->
-                <input type="file" name="service_image" id="service_image" class="form-control" placeholder="Choose Service Image" >
+                <input type="file" name="service_image" id="service_image" class="form-control imagevalidation" placeholder="Choose Service Image" >
 
                 @if ($service->service_image)
                 <div>
@@ -48,3 +48,31 @@
 </main>
 
 @endsection
+@push('js')
+<script>
+    $(document).ready(function () {
+   $('.imagevalidation').on('change', function () {
+          var file = this.files[0]; // Get the selected file
+          if (file) {
+              console.log(file.size)
+              var maxSize = 5 * 1024 * 1024; // 5 MB in bytes
+              if (file.size > maxSize) {
+                  alert("File size should not exceed 5MB");
+                  $(this).val(''); // Clear the file input field
+              }
+          }
+      });
+      $('.videovalidation').on('change', function () {
+          var file = this.files[0]; // Get the selected file
+          if (file) {
+              console.log(file.size)
+              var maxSize = 50 * 1024 * 1024; // 5 MB in bytes
+              if (file.size > maxSize) {
+                  alert("File size should not exceed 50MB");
+                  $(this).val(''); // Clear the file input field
+              }
+          }
+      });
+  });
+  </script>
+@endpush

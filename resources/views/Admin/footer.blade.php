@@ -30,7 +30,7 @@
   <script src="{{asset('admin/js/main.js')}}"></script>
 
   @yield('script')
-
+@stack('js')
 </body>
 
 </html>

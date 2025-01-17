@@ -18,7 +18,7 @@
             @csrf
             <div class="mt-3">
                 <label for="service_image" class="mb-2">Service Image <span style="color: red">*</span></label>
-                <input type="file" name="service_image" id="service_image" class="form-control" placeholder="Enter Service Image" value="{{ old('service_image') }}">
+                <input type="file" name="service_image" id="service_image" class="form-control imagevalidation" placeholder="Enter Service Image" value="{{ old('service_image') }}">
                 @error('service_image')
                 <div class="error text-danger">{{ $message }}</div>
                 @enderror
@@ -37,3 +37,31 @@
 </main>
 
 @endsection
+@push('js')
+<script>
+    $(document).ready(function () {
+   $('.imagevalidation').on('change', function () {
+          var file = this.files[0]; // Get the selected file
+          if (file) {
+              console.log(file.size)
+              var maxSize = 5 * 1024 * 1024; // 5 MB in bytes
+              if (file.size > maxSize) {
+                  alert("File size should not exceed 5MB");
+                  $(this).val(''); // Clear the file input field
+              }
+          }
+      });
+      $('.videovalidation').on('change', function () {
+          var file = this.files[0]; // Get the selected file
+          if (file) {
+              console.log(file.size)
+              var maxSize = 50 * 1024 * 1024; // 5 MB in bytes
+              if (file.size > maxSize) {
+                  alert("File size should not exceed 50MB");
+                  $(this).val(''); // Clear the file input field
+              }
+          }
+      });
+  });
+  </script>
+@endpush

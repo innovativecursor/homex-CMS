@@ -22,7 +22,7 @@
             @csrf
             <div class="mt-3">
                 <label for="about_image1" class="mb-2">About Image 1 <span style="color: red">*</span></label>
-                <input type="file" name="about_image1" id="about_image1" class="form-control" placeholder="Enter About 1 Image">
+                <input type="file" name="about_image1" id="about_image1" class="form-control imagevalidation" placeholder="Enter About 1 Image">
 
                 <!-- Show current image if it exists -->
                 @if ($about->about_image1)
@@ -38,7 +38,7 @@
 
             <div class="mt-3">
                 <label for="about_image2" class="mb-2">About Image 2 <span style="color: red">*</span></label>
-                <input type="file" name="about_image2" id="about_image2" class="form-control" placeholder="Enter About 2 Image">
+                <input type="file" name="about_image2" id="about_image2" class="form-control imagevalidation" placeholder="Enter About 2 Image">
 
                 <!-- Show current image if it exists -->
                 @if ($about->about_image2)
@@ -110,10 +110,38 @@
                 <div class="error text-danger">{{ $message }}</div>
                 @enderror
             </div>
-            
+
             <button type="submit" class="btn btn-primary mt-3">Save</button>
         </form>
     </section>
 </main>
 
 @endsection
+@push('js')
+<script>
+    $(document).ready(function () {
+   $('.imagevalidation').on('change', function () {
+          var file = this.files[0]; // Get the selected file
+          if (file) {
+              console.log(file.size)
+              var maxSize = 5 * 1024 * 1024; // 5 MB in bytes
+              if (file.size > maxSize) {
+                  alert("File size should not exceed 5MB");
+                  $(this).val(''); // Clear the file input field
+              }
+          }
+      });
+      $('.videovalidation').on('change', function () {
+          var file = this.files[0]; // Get the selected file
+          if (file) {
+              console.log(file.size)
+              var maxSize = 50 * 1024 * 1024; // 5 MB in bytes
+              if (file.size > maxSize) {
+                  alert("File size should not exceed 50MB");
+                  $(this).val(''); // Clear the file input field
+              }
+          }
+      });
+  });
+  </script>
+@endpush
