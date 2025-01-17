@@ -47,7 +47,12 @@ class TestimonialsController extends Controller
             'testimonials_location' => 'required',
             'testimonials_review' => 'required',
             'testimonials_description'=>'required',
-            'testimonials_image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+           'testimonials_image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:5120',
+        ], [
+            'testimonials_image.max' => 'The testimonials image must not be greater than 5 MB.',
+
+
+
         ]);
 
         if ($request->hasFile('testimonials_image')) {
@@ -85,6 +90,10 @@ class TestimonialsController extends Controller
             'testimonials_location' => 'required',
             'testimonials_review' => 'required',
             'testimonials_description'=>'required',
+            'testimonials_image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:5120',
+        ], [
+            'testimonials_image.max' => 'The testimonials image must not be greater than 5 MB.',
+
         ]);
 
         $testimonials = Testimonials::findOrFail($id);

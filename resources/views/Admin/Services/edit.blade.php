@@ -42,7 +42,7 @@
                 @enderror
             </div>
 
-            <button type="submit" class="btn btn-primary mt-3">Add Service</button>
+            <button type="submit" class="btn btn-primary mt-3">Updateg</button>
         </form>
     </section>
 </main>

@@ -49,8 +49,11 @@ class ProjectController extends Controller
             'features'=>'required',
             'exuctiontime'=>'required',
             'turnover'=>'required',
-            'project_image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'project_video' => 'required',
+            'project_image' =>  'required|image|mimes:jpeg,png,jpg,gif,svg|max:5120',
+            'project_video' => 'required|mimes:mp4,mov,avi,wmv,mkv|max:51200',
+        ], [
+            'project_image.max' => 'The project image must not be greater than 5 MB.',
+            'project_video.max' => 'The project video must not be greater than 50 MB.',
 
         ]);
         if ($request->hasFile('project_image')) {
@@ -103,6 +106,11 @@ class ProjectController extends Controller
             'features'=>'required',
             'exuctiontime'=>'required',
             'turnover'=>'required',
+            'project_image' =>  'required|image|mimes:jpeg,png,jpg,gif,svg|max:5120',
+            'project_video' => 'required|mimes:mp4,mov,avi,wmv,mkv|max:51200',
+        ], [
+            'project_image.max' => 'The project image must not be greater than 5 MB.',
+            'project_video.max' => 'The project video must not be greater than 50 MB.',
         ]);
 
         $project = Project::findOrFail($id);

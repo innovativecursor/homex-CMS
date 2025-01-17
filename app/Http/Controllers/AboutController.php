@@ -27,8 +27,12 @@ class AboutController extends Controller
             'our_values2' => 'required|string',
             'our_values3' => 'required|string',
             'our_values4' => 'required|string',
-            'about_image1' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'about_image2' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'about_image1' =>  'required|image|mimes:jpeg,png,jpg,gif,svg|max:5120',
+            'about_image2' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:5120',
+        ], [
+            'about_image1.max' => 'The about image 1 must not be greater than 5 MB.',
+            'about_image2.max' => 'The about image 2 must not be greater than 5 MB.',
+
         ]);
         $about = About::first();
 

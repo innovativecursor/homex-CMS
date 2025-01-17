@@ -44,7 +44,10 @@ class TeamController extends Controller
         $request->validate([
             'name' => 'required',
             'designation' => 'required',
-            'team_image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'team_image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:5120',
+        ], [
+            'team_image.max' => 'The team image must not be greater than 5 MB.',
+
 
         ]);
         if ($request->hasFile('team_image')) {
@@ -78,6 +81,9 @@ class TeamController extends Controller
         $request->validate([
             'name' => 'required',
             'designation' => 'required',
+            'team_image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:5120',
+        ], [
+            'team_image.max' => 'The team image must not be greater than 5 MB.',
         ]);
 
 

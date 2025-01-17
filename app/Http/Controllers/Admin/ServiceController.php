@@ -57,7 +57,9 @@ class ServiceController extends Controller
     {
         $request->validate([
             'description' => 'required',
-            'service_image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'service_image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:5120',
+        ], [
+            'service_image.max' => 'The service image must not be greater than 5 MB.',
 
         ]);
         if ($request->hasFile('service_image')) {
@@ -87,6 +89,9 @@ class ServiceController extends Controller
     {
         $request->validate([
             'description' => 'required',
+            'service_image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:5120',
+        ], [
+            'service_image.max' => 'The service image must not be greater than 5 MB.',
         ]);
 
         $service = Service::findOrFail($id);
